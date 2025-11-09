@@ -46,22 +46,22 @@ A aplicação é hospedada no Azure Web App, com um banco de dados PostgreSQL em
 
 
 ## 🧠 Estrutura da Aplicação
+
+```text
 src/
 ├── main/
-│ ├── java/com/mottutrack/api/
-│ │ ├── controller/ → Endpoints REST
-│ │ ├── model/ → Entidades (Filial, Moto)
-│ │ ├── repository/ → Interfaces JPA
-│ │ ├── service/ → Regras de negócio (BO)
-│ │ ├── dto/ → Transferência de dados
-│ │ └── exceptions/ → Tratamento de erros
-│ └── resources/
-│ └── application.properties
+│   ├── java/com/mottutrack/api/
+│   │   ├── controller/        # Endpoints REST
+│   │   ├── model/             # Entidades (Filial, Moto, etc.)
+│   │   ├── repository/        # Interfaces JPA
+│   │   ├── service/           # Regras de negócio
+│   │   ├── dto/               # Objetos de transferência de dados
+│   │   └── exceptions/        # Tratamento de erros
+│   └── resources/
+│       └── application.properties  # Configurações (DB, porta, etc.)
 └── test/
-└── java/ → Testes unitários e de integração
-
-yaml
-Copiar código
+    └── java/                  # Testes unitários e de integração
+````
 
 ---
 
@@ -135,10 +135,10 @@ Copiar código
 |----------|------|
 | **Azure DevOps Project** | [https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps](https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps)|
 
-
+|----------|------|
 | **Azure App Service (API Online)** | [https://mottutrack-api-558438.azurewebsites.net/login](https://mottutrack-api-558438.azurewebsites.net/login) |
 
-
+|----------|------|
 | **Vídeo de Demonstração (YouTube)** | [https://youtu.be/<link-video>](https://youtu.be/<link-video>) |
 
 
