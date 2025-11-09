@@ -19,6 +19,22 @@ Este projeto faz parte da **Sprint 4 – Azure DevOps**, cujo foco é configurar
 
 ---
 
+## 🧱 Detalhamento dos Componentes
+
+| 🧩 **Nome do Componente** | ⚙️ **Tipo** | 🧠 **Descrição Funcional** | 🧰 **Tecnologia / Ferramenta** |
+|----------------------------|-------------|------------------------------|--------------------------------|
+| 💾 **Repositório de Código** | SCM | Onde o código-fonte está versionado e armazenado. | 🧠 GitHub |
+| 🧪 **Pipeline de Build (CI)** | Orquestrador CI | Compila o projeto, executa testes unitários e gera o artefato (.jar). | ⚙️ Azure DevOps Pipelines |
+| 📦 **Artefato (drop)** | Gerenciador de Artefatos | Armazena o artefato gerado pela pipeline para posterior deploy. | 📁 Azure DevOps Artifacts |
+| 🚀 **Pipeline de Release (CD)** | Orquestrador CD | Realiza o deploy automatizado do artefato para o ambiente de desenvolvimento. | ⚙️ Azure DevOps Releases |
+| 🔐 **Variáveis de Ambiente** | Configuração | Define credenciais e parâmetros necessários para conexão com o banco de dados. | ⚙️ Azure DevOps Variables / ☁️ Azure App Service |
+| ☁️ **Aplicação Hospedada** | Infraestrutura Cloud | Serviço em nuvem que executa a aplicação Java Spring Boot. | ☁️ Azure App Service |
+| 🗄️ **Banco de Dados** | Persistência | Armazena as informações das entidades **Filial** e **Moto**. | 🐘 Azure Database for PostgreSQL |
+| 👨‍💻 **Desenvolvedor** | Persona | Responsável por versionar o código e disparar o pipeline (commit/push). | 🧠 Git / Azure DevOps |
+| 👤 **Usuário Final** | Persona | Consome os endpoints da API após o deploy no App Service. | 🌐 Postman / Browser |
+
+---
+
 ## 🧩 Arquitetura do Sistema
 
 O sistema é composto por duas entidades principais:
