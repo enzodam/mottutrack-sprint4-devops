@@ -1,10 +1,11 @@
-# 🚀 MottuTrackAPI1 — Integração com Azure DevOps (CI/CD)
+# 🚀 MottuTrack — Azure DevOps (CI/CD)
 
 ## 📘 Descrição do Projeto
-O **MottuTrackAPI1** é uma API REST desenvolvida em **Spring Boot** que realiza o gerenciamento de **filiais e motos** da empresa Mottu.  
-O objetivo é permitir o controle centralizado das operações de frota, garantindo integração com o **Azure DevOps** para automação completa do ciclo de vida de deploy.
+O MottuTrack é uma aplicação desenvolvida em Java Spring Boot com o objetivo de gerenciar e monitorar motocicletas de forma eficiente, integrando funcionalidades de cadastro, atualização e controle de disponibilidade.
+O projeto utiliza integração contínua (CI) e entrega contínua (CD) por meio do Azure DevOps, garantindo que cada alteração no código seja automaticamente compilada, testada e implantada em produção.
 
-Este projeto faz parte da **Sprint 4 – Azure DevOps**, cujo foco é configurar e validar todo o processo de **integração contínua (CI)** e **entrega contínua (CD)** de uma aplicação Java hospedada no **Azure App Service**.
+A automação elimina processos manuais, aumenta a confiabilidade do deploy e reduz o tempo entre o desenvolvimento e a disponibilização de novas versões da API.
+A aplicação é hospedada no Azure Web App, com um banco de dados PostgreSQL em nuvem configurado via variáveis de ambiente para segurança e escalabilidade.
 
 ---
 
@@ -12,12 +13,20 @@ Este projeto faz parte da **Sprint 4 – Azure DevOps**, cujo foco é configurar
 | Camada | Tecnologias Utilizadas |
 |:-------:|-------------------------|
 | Backend | Java 17 • Spring Boot 3 • Maven |
-| Cloud | Azure App Service • Azure SQL Database |
+| Cloud | Azure App Service • Banco PostGreSQL |
 | CI/CD | Azure DevOps Pipelines (Build + Release) |
 | Versionamento | GitHub + Repos do Azure DevOps |
-| Outros | Visual Paradigm (diagramas), Postman (testes), Git |
+| Outros | Visual Paradigm (diagramas), Banco PostGreSQL (testes), Git |
 
 ---
+
+
+## 🧩 Arquitetura CI/CD
+
+![Arquitetura CI/CD - MottuTrack](./docs/arquitetura-cicd.png)
+
+---
+
 
 ## 🧱 Detalhamento dos Componentes
 
@@ -35,18 +44,6 @@ Este projeto faz parte da **Sprint 4 – Azure DevOps**, cujo foco é configurar
 
 ---
 
-## 🧩 Arquitetura do Sistema
-
-O sistema é composto por duas entidades principais:
-
-- **Filial:** Representa uma unidade operacional da Mottu.  
-  Contém atributos como nome, endereço e capacidade de operação.  
-- **Moto:** Representa uma motocicleta registrada em uma filial.  
-  Contém informações de placa, modelo, ano e disponibilidade.  
-
-A API segue o padrão **RESTful**, permitindo as operações CRUD completas para ambas as entidades.
-
----
 
 ## 🧠 Estrutura da Aplicação
 src/
@@ -94,19 +91,6 @@ O processo completo de integração contínua e entrega contínua foi configurad
 5. **Deploy Automático no App Service**  
    A aplicação é atualizada e publicada automaticamente no ambiente cloud.
 
----
-
-## 🧩 Diagrama de Arquitetura CI/CD
-
-*(Insira aqui a imagem exportada do Visual Paradigm — ex: “diagram-ci-cd.png”)*  
-**Exemplo:**
-![Diagrama CI/CD](./assets/diagram-ci-cd.png)
-
-Legenda:
-1️⃣ Commit no GitHub  
-2️⃣ Build Pipeline  
-3️⃣ Publicação do Artefato  
-4️⃣ Release e Deploy no App Service  
 
 ---
 
