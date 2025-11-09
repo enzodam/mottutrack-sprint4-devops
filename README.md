@@ -1,217 +1,158 @@
-## Mottu Track · Spring Boot + Thymeleaf + Flyway + Security
+# 🚀 MottuTrackAPI1 — Integração com Azure DevOps (CI/CD)
 
-**Aplicação web (challenge JAVA ADVANCED) construída com Spring Boot, Thymeleaf, Flyway e Spring Security.**
+## 📘 Descrição do Projeto
+O **MottuTrackAPI1** é uma API REST desenvolvida em **Spring Boot** que realiza o gerenciamento de **filiais e motos** da empresa Mottu.  
+O objetivo é permitir o controle centralizado das operações de frota, garantindo integração com o **Azure DevOps** para automação completa do ciclo de vida de deploy.
 
-Objetivo: simular a operação da Mottu com Filiais, Pátios, Vagas, Motos e Usuários — com autenticação (ADMIN/USER), CRUDs completos e páginas no padrão visual unificado.
+Este projeto faz parte da **Sprint 4 – Azure DevOps**, cujo foco é configurar e validar todo o processo de **integração contínua (CI)** e **entrega contínua (CD)** de uma aplicação Java hospedada no **Azure App Service**.
 
-## ✅ O que foi implementado (rubrica do desafio)
+---
 
-* Thymeleaf (30 pts)
+## ⚙️ Stack de Tecnologias
+| Camada | Tecnologias Utilizadas |
+|:-------:|-------------------------|
+| Backend | Java 17 • Spring Boot 3 • Maven |
+| Cloud | Azure App Service • Azure SQL Database |
+| CI/CD | Azure DevOps Pipelines (Build + Release) |
+| Versionamento | GitHub + Repos do Azure DevOps |
+| Outros | Visual Paradigm (diagramas), Postman (testes), Git |
 
-* Páginas para listar, criar, editar e excluir registros (CRUDs).
+---
 
-* Fragments (cabeçalho, menu, rodapé) para evitar repetição de código.
+## 🧩 Arquitetura do Sistema
 
-* Flyway
+O sistema é composto por duas entidades principais:
 
-* Versionamento do banco em src/main/resources/db/migration.
+- **Filial:** Representa uma unidade operacional da Mottu.  
+  Contém atributos como nome, endereço e capacidade de operação.  
+- **Moto:** Representa uma motocicleta registrada em uma filial.  
+  Contém informações de placa, modelo, ano e disponibilidade.  
 
-- Quatro versões mínimas:
+A API segue o padrão **RESTful**, permitindo as operações CRUD completas para ambas as entidades.
 
- - V1__create_tables.sql – criação de tabelas
+---
 
- - V2__seed_data.sql – dados iniciais
+## 🧠 Estrutura da Aplicação
+src/
+├── main/
+│ ├── java/com/mottutrack/api/
+│ │ ├── controller/ → Endpoints REST
+│ │ ├── model/ → Entidades (Filial, Moto)
+│ │ ├── repository/ → Interfaces JPA
+│ │ ├── service/ → Regras de negócio (BO)
+│ │ ├── dto/ → Transferência de dados
+│ │ └── exceptions/ → Tratamento de erros
+│ └── resources/
+│ └── application.properties
+└── test/
+└── java/ → Testes unitários e de integração
 
- - V3__indexes_and_constraints.sql – índices e unicidades
+yaml
+Copiar código
 
- - V4__admin_and_user.sql – usuários padrão
+---
 
-* Spring Security
+## 🔁 Fluxo de Integração CI/CD
 
-* Login (formulário) e logout.
+O processo completo de integração contínua e entrega contínua foi configurado no **Azure DevOps**, conforme o diagrama abaixo:
 
-* Perfis USER e ADMIN com proteção de rotas.
+### 🔹 **Etapas do Pipeline**
 
-## 📦 Stack
+1. **Commit no Repositório GitHub**  
+   O desenvolvedor realiza o push do código para a branch principal (`main`).
 
-* Java 21 • Spring Boot 3
+2. **Pipeline de Build (CI)**  
+   - A pipeline é disparada automaticamente após o commit.  
+   - As tasks executam:  
+     - Build do projeto com Maven  
+     - Execução de testes unitários  
+     - Publicação do artefato `.jar` no diretório `drop`
 
-* Spring MVC • Spring Data JPA • Spring Security
+3. **Publicação do Artefato**  
+   O artefato é armazenado e versionado dentro do **Azure DevOps Artifacts**.
 
-* Thymeleaf (com fragments)
+4. **Pipeline de Release (CD)**  
+   - O artefato é implantado no **Azure App Service**.  
+   - As variáveis de ambiente são configuradas automaticamente no serviço.
 
-* Flyway (migrations)
+5. **Deploy Automático no App Service**  
+   A aplicação é atualizada e publicada automaticamente no ambiente cloud.
 
-* PostgreSQL
+---
 
-## 🗂️ Estrutura (resumo)
+## 🧩 Diagrama de Arquitetura CI/CD
 
+*(Insira aqui a imagem exportada do Visual Paradigm — ex: “diagram-ci-cd.png”)*  
+**Exemplo:**
+![Diagrama CI/CD](./assets/diagram-ci-cd.png)
 
-src/main/java/...
-  ├─ controller/      # Rotas MVC (/login, /home, /admin, /admin/*)
-  
-  ├─ model/           # Entidades JPA (Usuario, Filial, Patio, Vaga, Moto)
-  
-  ├─ repository/      # Spring Data JPA
-  
-  └─ security/        # Configuração Spring Security
+Legenda:
+1️⃣ Commit no GitHub  
+2️⃣ Build Pipeline  
+3️⃣ Publicação do Artefato  
+4️⃣ Release e Deploy no App Service  
 
+---
 
-src/main/resources/
-  ├─ templates/       # Thymeleaf (layouts e páginas)
-  
-  │   ├─ fragments/   # header/menu/footer
-  
-  │   ├─ auth/        # login, register
-  
-  │   ├─ home-user.html
-  
-  │   └─ home-admin.html
-  
-  ├─ static/          # CSS/JS/Imagens
-  
-  └─ db/migration/    # Scripts Flyway (V1..V4)
+## 🔐 Configurações de Variáveis de Ambiente
 
-## ▶️ Como executar (2 passos recomendados)
+As variáveis de ambiente foram configuradas diretamente no **Azure DevOps** dentro da task de deploy, utilizando o formato correto para o App Service:
 
-1. **Subir PostgreSQL via Docker (opção recomendada)**
+-SPRING_DATASOURCE_URL "$(SPRING_DATASOURCE_URL)"
+-SPRING_DATASOURCE_USERNAME "$(SPRING_DATASOURCE_USERNAME)"
+-SPRING_DATASOURCE_PASSWORD "$(SPRING_DATASOURCE_PASSWORD)"
 
-* O repositório inclui um docker-compose.yml com Postgres 17 (DB: mottu, user: postgres, senha: postgres).
+perl
+Copiar código
 
-```bash
-docker compose up -d
-```
+Essas variáveis são consumidas no `application.properties` via:
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
 
-* Isso abre o banco em localhost:5432.
+yaml
+Copiar código
 
-* Caso prefira um Postgres local próprio, veja a seção Variáveis de Ambiente abaixo.
+---
 
-2. **Subir a aplicação**
+## ✅ Casos de Teste (Work Items)
 
-* Com Java 21+ instalado:
+| ID | Título | Status | Resultado Esperado |
+|----|---------|--------|--------------------|
+| 01 | Executar pipeline de build manualmente | ✅ Concluído | Build bem-sucedido |
+| 02 | Validar publicação do artefato | ✅ Concluído | Artefato gerado e disponível |
+| 03 | Executar release e fazer deploy | ✅ Concluído | Aplicação publicada no App Service |
+| 04 | Validar aplicação rodando após deploy | ✅ Concluído | API acessível via browser |
+| 05 | Validar variáveis de ambiente do App Service | ✅ Corrigido | Configurações válidas e aplicadas |
+| 06 | Disparar pipeline ao fazer commit no repositório | ✅ Concluído | Pipeline acionado automaticamente |
+| 07 | Ajustar variáveis de ambiente no DevOps | ✅ Corrigido | Deploy final sem erros (Release-6) |
 
-# usando o Maven Wrapper (preferível)
-```bash
-./mvnw spring-boot:run
-```
+---
 
-# ou, se tiver Maven instalado
-```bash
-mvn spring-boot:run
-```
+## 🌐 URLs e Recursos
 
-* Acesse: [http://localhost:8081]
+| Recurso | Link |
+|----------|------|
+| **Azure DevOps Project** | [https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps](https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps)|
 
-## 🔐 Acesso / Perfis
 
-* Se o V4__admin_and_user.sql já estiver aplicado com usuários padrão, será possível entrar diretamente com os seeds (admin/user).
+| **Azure App Service (API Online)** | [https://mottutrack-api-558438.azurewebsites.net/login](https://mottutrack-api-558438.azurewebsites.net/login) |
 
-* Caso contrário (ou para testar do zero), acesse /register e crie um usuário.
-- Para promovê-lo a ADMIN, execute no banco:
-```bash
-update usuario set perfil = 'ADMIN' where username = '<seu-username>';
-```
 
-- Observação: as senhas salvas via aplicação usam BCrypt (PasswordEncoder), conforme configuração de Security.
+| **Vídeo de Demonstração (YouTube)** | [https://youtu.be/<link-video>](https://youtu.be/<link-video>) |
 
-## ⚙️ Configuração (sem segredos no repositório)
 
-* src/main/resources/application.properties usa variáveis de ambiente com defaults adequados ao docker-compose:
 
-```bash
-server.port=8081
-spring.application.name=Mottu Track API
+---
 
-# Datasource (lê variáveis de ambiente; senão usa defaults do compose)
-spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mottu}
-spring.datasource.username=${SPRING_DATASOURCE_USERNAME:postgres}
-spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:postgres}
-spring.datasource.hikari.maximum-pool-size=5
+## 🧠 Conclusão
 
-# JPA / Flyway
-spring.jpa.hibernate.ddl-auto=none
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-spring.flyway.enabled=true
-spring.flyway.locations=classpath:db/migration
-spring.flyway.baseline-on-migrate=true
+O projeto **MottuTrackAPI1** conclui com sucesso o ciclo de automação CI/CD, integrando o Azure DevOps com o Azure App Service.  
+O processo garante **entregas automatizadas**, **versionamento contínuo** e **deploy seguro** da aplicação Java em nuvem.
 
-# Thymeleaf
-spring.thymeleaf.cache=false
-server.error.whitelabel.enabled=false
-```
+Além disso, o troubleshooting realizado no caso das **variáveis de ambiente** reforçou o domínio prático de DevOps e a compreensão sobre o fluxo completo de deploy corporativo.
 
-**Variáveis de ambiente suportadas (opcional):**
-
-* SPRING_DATASOURCE_URL • SPRING_DATASOURCE_USERNAME • SPRING_DATASOURCE_PASSWORD
-
-## 🔀 Migrations (Flyway)
-
-**As migrations são aplicadas automaticamente na inicialização:**
-
-
-* V1__create_tables.sql – tabelas e FKs
-
-* V2__seed_data.sql – dados iniciais
-
-* V3__indexes_and_constraints.sql – índices/uniqueness
-
-* V4__admin_and_user.sql – usuários padrão
-
-Reiniciar (ambiente de dev):
-
-```bash
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-```
-
-Ao subir novamente, o Flyway reaplica V1..V4.
-
-## 🌐 Rotas principais
-
--GET /login – login
-
--GET /register – cadastro
-
--POST /logout – sair
-
--GET /home – home do USER autenticado
-
--GET /admin – painel do ADMIN (protegido)
-
-
-**CRUDs no painel ADMIN (exemplos):**
-
-* Filiais (com UF obrigatório)
-
-* Pátios (relacionados à Filial)
-
-* Vagas (com código e disponibilidade)
-
-* Motos (com cor e Filial)
-
-* Usuários (ativo/perfil)
-
-## 🧯 Troubleshooting rápido
-
-**Porta 5432 ocupada (Postgres):**
-
-* Pare instâncias existentes ou altere a porta no docker-compose.yml (ex.: "5433:5432").
-
-**Erro de conexão (Hikari/Flyway):**
-
-* Ajuste as variáveis SPRING_DATASOURCE_* ou garanta que o Postgres do compose está de pé (docker ps).
-
-**Checksum mismatch (Flyway):**
-
-* Em dev, limpe o schema (comandos acima).
-
-* Em cenários reais, utilize flyway repair e crie novas versões (V5, V6…).
-
-## 🎬 Vídeo Demonstrativo
-
-[https://www.youtube.com/watch?v=KYNq12HNyC0]
-
+---
 
 ## 👨‍💻 Desenvolvedores
 
