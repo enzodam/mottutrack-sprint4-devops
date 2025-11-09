@@ -131,16 +131,11 @@ Copiar código
 
 ## 🌐 URLs e Recursos
 
-| Recurso | Link |
-|----------|------|
-| **Azure DevOps Project** | [https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps](https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps)|
-
-|----------|------|
-| **Azure App Service (API Online)** | [https://mottutrack-api-558438.azurewebsites.net/login](https://mottutrack-api-558438.azurewebsites.net/login) |
-
-|----------|------|
-| **Vídeo de Demonstração (YouTube)** | [https://youtu.be/<link-video>](https://youtu.be/<link-video>) |
-
+| 💾 Recurso | 🔗 Link |
+|-------------|---------|
+| 🧩 **Azure DevOps Project** | [Acessar Pipeline no Azure DevOps](https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps) |
+| ☁️ **Azure App Service (API Online)** | [Acessar API hospedada](https://mottutrack-api-558438.azurewebsites.net/login) |
+| 🎥 **Vídeo de Demonstração (YouTube)** | [Assistir vídeo da entrega](https://youtu.be/<link-video>) |
 
 
 ---
