@@ -135,7 +135,7 @@ Copiar código
 |-------------|---------|
 | 🧩 **Azure DevOps Project** | [Acessar Pipeline no Azure DevOps](https://dev.azure.com/RM558438/Sprint%204%20%E2%80%93%20Azure%20DevOps) |
 | ☁️ **Azure App Service (API Online)** | [Acessar API hospedada](https://mottutrack-api-558438.azurewebsites.net/login) |
-| 🎥 **Vídeo de Demonstração (YouTube)** | [Assistir vídeo da entrega]([https://youtu.be/<link-video>](https://youtu.be/tPo-aedx2Dg)) |
+| 🎥 **Vídeo de Demonstração (YouTube)** | [Assistir vídeo da entrega](https://youtu.be/tPo-aedx2Dg) |
 
 
 ---
